@@ -34,6 +34,7 @@ namespace apiwebhook.Controllers
 
                 string messageText = null;
                 string buttonId = null;
+                string buttonTitle = null; // Para almacenar el texto del botón interactivo
 
                 if (message.Type == "text" && message.Text != null)
                 {
@@ -42,7 +43,8 @@ namespace apiwebhook.Controllers
                 else if (message.Type == "interactive" && message.Interactive?.Type == "button_reply")
                 {
                     buttonId = message.Interactive.ButtonReply?.Id;
-                    messageText = "[Interactive Message]"; 
+                    buttonTitle = message.Interactive.ButtonReply?.Title; // Captura el texto del botón
+                    messageText = $"[Interactive Message] Option selected: {buttonTitle}"; // Guardar el contenido de la opción seleccionada
                 }
                 else
                 {

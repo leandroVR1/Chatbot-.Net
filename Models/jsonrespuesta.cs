@@ -70,6 +70,9 @@ public class ButtonReply
 {
     [JsonPropertyName("id")]
     public string Id { get; set; }
+    
+    [JsonPropertyName("title")]
+    public string Title { get; set; }
 }
 
 public class Contact
