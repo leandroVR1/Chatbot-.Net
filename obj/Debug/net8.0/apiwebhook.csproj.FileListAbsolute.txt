@@ -120,3 +120,4 @@ C:/Users/yeifr/OneDrive/Documentos/leo/apiwebhook/obj/Debug/net8.0/ref/apiwebhoo
 /home/riwip5-047/Documents/leo/webhookprueba/apiwebhook/obj/Debug/net8.0/apiwebhook.pdb
 /home/riwip5-047/Documents/leo/webhookprueba/apiwebhook/obj/Debug/net8.0/apiwebhook.genruntimeconfig.cache
 /home/riwip5-047/Documents/leo/webhookprueba/apiwebhook/obj/Debug/net8.0/ref/apiwebhook.dll
+/home/riwip5-047/Documents/leo/webhookprueba/apiwebhook/obj/Debug/net8.0/apiwebhook.sourcelink.json

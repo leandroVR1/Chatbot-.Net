@@ -22,16 +22,39 @@ namespace apiwebhook.Controllers
         {
             try
             {
-                var entry = jsoncontent.Entries[0];
-                var change = entry.Changes[0];
-                var value = change.Value;
-                var message = value.Messages[0];
+                var entry = jsoncontent.Entries?[0];
+                var change = entry?.Changes?[0];
+                var value = change?.Value;
+                var message = value?.Messages?[0];
+
+                if (message == null)
+                {
+                    return BadRequest("Message content is missing");
+                }
+
+                string messageText = null;
+                string buttonId = null;
+
+                if (message.Type == "text" && message.Text != null)
+                {
+                    messageText = message.Text.Body;
+                }
+                else if (message.Type == "interactive" && message.Interactive?.Type == "button_reply")
+                {
+                    buttonId = message.Interactive.ButtonReply?.Id;
+                    messageText = "[Interactive Message]"; 
+                }
+                else
+                {
+                    return BadRequest("Unsupported message type or missing fields");
+                }
 
                 var incomingMessage = new IncomingMessage
                 {
-                    Name = value.Contacts[0].Profile.Name,
-                    WaId = value.Contacts[0].WaId,
-                    Message = message.Text.Body,
+                    Name = value?.Contacts?[0].Profile?.Name,
+                    WaId = value?.Contacts?[0].WaId,
+                    Message = messageText,
+                    ButtonId = buttonId,
                     Timestamp = DateTimeOffset.FromUnixTimeSeconds(long.Parse(message.Timestamp)).DateTime
                 };
 
